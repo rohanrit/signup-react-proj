@@ -1,0 +1,37 @@
+{
+  "registrations": [
+    {
+      "id": "caf9",
+      "fullName": "test",
+      "streetAddress": "test",
+      "city": "test",
+      "state": "test",
+      "mobileNumber": "9876543210",
+      "dob": "2024-07-17",
+      "email": "test@sample.com",
+      "terms": true
+    },
+    {
+      "id": "548d",
+      "fullName": "test2",
+      "streetAddress": "test2",
+      "city": "test2",
+      "state": "test",
+      "mobileNumber": "9876543211",
+      "dob": "2024-07-05",
+      "email": "test@sample.com",
+      "terms": true
+    },
+    {
+      "id": "815b",
+      "fullName": "test001",
+      "streetAddress": "test",
+      "city": "test",
+      "state": "test",
+      "mobileNumber": "9876543210",
+      "dob": "2024-07-03",
+      "email": "test@gmail.com",
+      "terms": true
+    }
+  ]
+}
