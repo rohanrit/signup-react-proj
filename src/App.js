@@ -1,7 +1,7 @@
 // src/App.js
-import React from 'react';
-import RegistrationForm from './components/RegistrationForm';
-import './App.css';
+import React from "react";
+import RegistrationForm from "./components/RegistrationPage";
+import "./App.css";
 
 function App() {
   return (

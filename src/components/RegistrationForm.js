@@ -1,5 +1,4 @@
-// src/components/RegistrationForm.js
-import React, { useState } from "react";
+import React from "react";
 import {
   TextField,
   Button,
@@ -8,150 +7,182 @@ import {
   FormGroup,
   Grid,
   Typography,
-  Container,
+  Box,
 } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object({
+  fullName: Yup.string().required("Full Name is required"),
+  streetAddress: Yup.string().required("Street Address is required"),
+  city: Yup.string().required("City is required"),
+  state: Yup.string().required("State is required"),
+  mobileNumber: Yup.string()
+    .matches(/^[0-9]{10}$/, "Mobile Number must be 10 digits")
+    .required("Mobile Number is required"),
+  dob: Yup.date().required("Date of Birth is required"),
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  terms: Yup.bool().oneOf([true], "You must agree to the terms"),
+});
 
 const RegistrationForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const onSubmit = async (data) => {
-    console.log(data);
+  const handleSubmit = async (values, { setSubmitting, setStatus }) => {
+    console.log("Submitted values:", values);
     try {
       const response = await fetch("http://localhost:5000/registrations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(values),
       });
 
       if (response.ok) {
-        setIsSubmitted(true);
+        setStatus({ success: true });
       } else {
-        console.error("Failed to submit data");
+        setStatus({ success: false });
       }
     } catch (error) {
       console.error("Error:", error);
+      setStatus({ success: false });
     }
+    setSubmitting(false);
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Typography component="h1" variant="h5">
-        Register
-      </Typography>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          label="Full Name"
-          {...register("fullName", { required: "Full Name is required" })}
-          error={!!errors.fullName}
-          helperText={errors.fullName?.message}
-        />
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          label="Street Address"
-          {...register("streetAddress", {
-            required: "Street Address is required",
-          })}
-          error={!!errors.streetAddress}
-          helperText={errors.streetAddress?.message}
-        />
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label="City"
-              {...register("city", { required: "City is required" })}
-              error={!!errors.city}
-              helperText={errors.city?.message}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label="State"
-              {...register("state", { required: "State is required" })}
-              error={!!errors.state}
-              helperText={errors.state?.message}
-            />
-          </Grid>
-        </Grid>
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          label="Mobile Number"
-          type="tel"
-          {...register("mobileNumber", {
-            required: "Mobile Number is required",
-            pattern: {
-              value: /^[0-9]{10}$/,
-              message: "Mobile Number must be 10 digits",
-            },
-          })}
-          error={!!errors.mobileNumber}
-          helperText={errors.mobileNumber?.message}
-        />
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          label="Date of Birth"
-          type="date"
-          InputLabelProps={{ shrink: true }}
-          {...register("dob", { required: "Date of Birth is required" })}
-          error={!!errors.dob}
-          helperText={errors.dob?.message}
-        />
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          label="Email"
-          type="email"
-          {...register("email", {
-            required: "Email is required",
-            pattern: {
-              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: "Invalid email address",
-            },
-          })}
-          error={!!errors.email}
-          helperText={errors.email?.message}
-        />
-        <FormGroup>
-          <FormControlLabel
-            control={<Checkbox required />}
-            label="I agree to the Terms of Service"
-            {...register("terms", { required: "You must agree to the terms" })}
-            error={!!errors.terms}
+    <Formik
+      initialValues={{
+        fullName: "",
+        streetAddress: "",
+        city: "",
+        state: "",
+        mobileNumber: "",
+        dob: "",
+        email: "",
+        terms: false,
+      }}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      {({ isSubmitting, status, touched, errors }) => (
+        <Form>
+          <Field
+            as={TextField}
+            margin="normal"
+            required
+            fullWidth
+            name="fullName"
+            label="Full Name"
+            error={touched.fullName && Boolean(errors.fullName)}
+            helperText={<ErrorMessage name="fullName" />}
           />
-        </FormGroup>
-        <Button type="submit" fullWidth variant="contained" color="primary">
-          Register
-        </Button>
-        {isSubmitted && (
-          <Typography variant="body2" color="success">
-            Registration Successful
-          </Typography>
-        )}
-      </form>
-    </Container>
+          <Field
+            as={TextField}
+            margin="normal"
+            required
+            fullWidth
+            name="streetAddress"
+            label="Street Address"
+            error={touched.streetAddress && Boolean(errors.streetAddress)}
+            helperText={<ErrorMessage name="streetAddress" />}
+          />
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <Field
+                as={TextField}
+                margin="normal"
+                required
+                fullWidth
+                name="city"
+                label="City"
+                error={touched.city && Boolean(errors.city)}
+                helperText={<ErrorMessage name="city" />}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Field
+                as={TextField}
+                margin="normal"
+                required
+                fullWidth
+                name="state"
+                label="State"
+                error={touched.state && Boolean(errors.state)}
+                helperText={<ErrorMessage name="state" />}
+              />
+            </Grid>
+          </Grid>
+          <Field
+            as={TextField}
+            margin="normal"
+            required
+            fullWidth
+            name="mobileNumber"
+            label="Mobile Number"
+            type="tel"
+            error={touched.mobileNumber && Boolean(errors.mobileNumber)}
+            helperText={<ErrorMessage name="mobileNumber" />}
+          />
+          <Field
+            as={TextField}
+            margin="normal"
+            required
+            fullWidth
+            name="dob"
+            label="Date of Birth"
+            type="date"
+            InputLabelProps={{ shrink: true }}
+            error={touched.dob && Boolean(errors.dob)}
+            helperText={<ErrorMessage name="dob" />}
+          />
+          <Field
+            as={TextField}
+            margin="normal"
+            required
+            fullWidth
+            name="email"
+            label="Email"
+            type="email"
+            error={touched.email && Boolean(errors.email)}
+            helperText={<ErrorMessage name="email" />}
+          />
+          <FormGroup>
+            <FormControlLabel
+              control={<Field as={Checkbox} name="terms" />}
+              label="I agree to the Terms of Service"
+            />
+            <ErrorMessage name="terms">
+              {(msg) => <Typography color="error">{msg}</Typography>}
+            </ErrorMessage>
+          </FormGroup>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            disabled={isSubmitting}
+          >
+            Register
+          </Button>
+          {status?.success && (
+            <Box mt={2}>
+              <Typography variant="body2" color="success.main">
+                Registration Successful
+              </Typography>
+            </Box>
+          )}
+          {status?.success === false && (
+            <Box mt={2}>
+              <Typography variant="body2" color="error">
+                Registration Failed
+              </Typography>
+            </Box>
+          )}
+        </Form>
+      )}
+    </Formik>
   );
 };
 
