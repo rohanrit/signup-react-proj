@@ -1,4 +1,4 @@
-# Sharecare Registration Form
+# Registration React Form
 
 ## Description
 
@@ -18,7 +18,6 @@ This project replicates the Sharecare registration page using React and Material
 - **Material-UI:** Component library for React with pre-designed components.
 - **Formik:** Library for handling form state and validation.
 - **Yup:** Validation library for Formik.
-- **Next.js (optional):** Framework for server-side rendering and routing.
 
 ## Installation
 
