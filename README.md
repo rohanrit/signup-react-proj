@@ -30,7 +30,7 @@ This project replicates the Sharecare registration page using React and Material
    ```
 
 2. Navigate to the project directory:
-   cd sharecare-registration
+   cd signup-react-proj
 
 3. Install the dependencies:
    npm install
