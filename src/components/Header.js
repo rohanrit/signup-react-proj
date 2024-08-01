@@ -1,23 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import {
   AppBar,
   Toolbar,
   Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Divider,
   Box,
   Button,
   Typography,
 } from "@mui/material";
 import logo from "../logo.svg";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import style from "../components/style.css";
 
 const Header = () => {
   const theme = useTheme();
@@ -27,9 +20,7 @@ const Header = () => {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-    },
-    drawerrightbar: {
-      padding: "15px",
+      padding: "0px",
     },
     logo: {
       fontSize: "24px",
@@ -58,41 +49,142 @@ const Header = () => {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 350 }}
+      sx={{
+        width: anchor === "top" || anchor === "bottom" ? "auto" : 350,
+        padding: "15px",
+      }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
-      style={styles.drawerrightbar}
     >
-      <div>
-        <Typography variant="p">How It Works</Typography>
-        <Typography variant="h6">Joining is simple</Typography>
-        <Box sx={styles.sliderContent}>
-          <p>
-            By simply registering and answering a few questions, you’ll unlock
-            personalized health experience to start your health journey.
-          </p>
-        </Box>
+      <div style={{ textAlign: "right" }}>
+        <Button
+          sx={{
+            marginLeft: "auto",
+            backgroundColor: "#fff",
+            color: "#00BFA5",
+            border: "1px solid transparent",
+            "&:hover": {
+              backgroundColor: "#ECFDF5",
+              border: "1px solid transparent",
+              boxShadow:
+                "0px 1px 2px rgba(0, 0, 0, 0.05),0px 0px 0px 3px rgba(79, 222, 203, 0.4)",
+            },
+          }}
+          variant="outlined"
+          onClick={toggleDrawer(anchor, true)}
+        >
+          Close
+        </Button>
       </div>
-      <Divider />
+      <div>
+        <Typography
+          variant="p"
+          margin="15px 0px"
+          sx={{
+            fontFamily: "Neuton, sans-serif",
+            padding: "25px 0 0",
+            background: "inherit",
+            boxShadow: "none",
+            color: "#93999e",
+          }}
+        >
+          How It Works
+        </Typography>
+        <Typography
+          variant="h3"
+          margin="15px 0px"
+          sx={{
+            fontFamily: "Neuton, sans-serif",
+            color: "#006658",
+          }}
+        >
+          Joining is simple
+        </Typography>
+        <Typography
+          variant="p"
+          margin="15px 0px"
+          sx={{
+            fontFamily: "Neuton, sans-serif",
+          }}
+        >
+          By simply registering and answering a few questions, you’ll unlock
+          personalized health experience to start your health journey.
+        </Typography>
+      </div>
 
-      <List>
-        {[
-          "Register an account",
-          "Tell us about your lifestyle and health",
-          "Receive Sharecare personalized health experience",
-        ].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <FavoriteBorderIcon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
+      <Box mt={5}>
+        <Typography
+          variant="p"
+          margin="15px 0px"
+          sx={{
+            fontFamily: "Neuton, sans-serif",
+            padding: "25px 0 0",
+            background: "inherit",
+            boxShadow: "none",
+            color: "#93999e",
+          }}
+        >
+          <FavoriteBorderIcon /> STEP 1
+        </Typography>
+        <Typography
+          variant="h4"
+          margin="15px 0px"
+          sx={{
+            fontFamily: "Neuton, sans-serif",
+            color: "#006658",
+          }}
+        >
+          Register an account
+        </Typography>
+      </Box>
+      <Box mt={3}>
+        <Typography
+          variant="p"
+          sx={{
+            fontFamily: "Neuton, sans-serif",
+            padding: "25px 0 0",
+            background: "inherit",
+            boxShadow: "none",
+            color: "#93999e",
+          }}
+        >
+          <FavoriteBorderIcon /> STEP 2
+        </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            fontFamily: "Neuton, sans-serif",
+            color: "#006658",
+          }}
+        >
+          Tell us about your lifestyle and health
+        </Typography>
+      </Box>
+      <Box mt={3}>
+        <Typography
+          variant="p"
+          margin="15px 0px"
+          sx={{
+            fontFamily: "Neuton, sans-serif",
+            padding: "25px 0 0",
+            background: "inherit",
+            boxShadow: "none",
+            color: "#93999e",
+          }}
+        >
+          <FavoriteBorderIcon /> STEP 3
+        </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            fontFamily: "Neuton, sans-serif",
+            color: "#006658",
+          }}
+        >
+          Receive Sharecare personalized health experience
+        </Typography>
+      </Box>
     </Box>
   );
   return (
@@ -101,12 +193,12 @@ const Header = () => {
         sx={{
           position: isScreenLessThanMd ? "static" : "fixed",
           width: isScreenLessThanMd ? "100%" : "50%",
-          padding: "0px 24px",
+          padding: "25px 0 0",
           background: "inherit",
           boxShadow: "none",
         }}
       >
-        <Toolbar style={styles.apptoolbar}>
+        <Toolbar sx={styles.apptoolbar}>
           <Box
             sx={styles.logo}
             onClick={() => (window.location.href = "/registration")}
@@ -125,7 +217,17 @@ const Header = () => {
           {["right"].map((anchor) => (
             <React.Fragment key={anchor}>
               <Button
-                color="success"
+                sx={{
+                  backgroundColor: "#fff",
+                  color: "#333",
+                  border: "1px solid #00BFA5",
+                  "&:hover": {
+                    backgroundColor: "#ECFDF5",
+                    border: "1px solid #00BFA5",
+                    boxShadow:
+                      "0px 1px 2px rgba(0, 0, 0, 0.05),0px 0px 0px 3px rgba(79, 222, 203, 0.4)",
+                  },
+                }}
                 variant="outlined"
                 onClick={toggleDrawer(anchor, true)}
               >

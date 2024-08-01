@@ -1,21 +1,25 @@
 import React from "react";
 import {
   TextField,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
   Button,
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
   Grid,
   Typography,
   Box,
   InputAdornment,
   IconButton,
   Link,
+  Card,
+  CardContent,
 } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import EditIcon from "@mui/icons-material/Edit";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Email from "@mui/icons-material/Email";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const validationSchema = Yup.object({
   fullName: Yup.string().required("Full Name is required"),
@@ -29,15 +33,14 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .email("Invalid email address")
     .required("Email is required"),
+  gender: Yup.string()
+    .oneOf(["male", "female", "other"], "Invalid gender")
+    .required("Gender is required"),
   terms: Yup.bool().oneOf([true], "You must agree to the terms"),
 });
 
 const styles = {
-  formitem: {
-    marginTop: "0px",
-    marginBottom: "0px",
-  },
-  formfooter: {},
+  formitem: {},
 };
 
 const RegistrationForm = () => {
@@ -74,6 +77,7 @@ const RegistrationForm = () => {
         mobileNumber: "",
         dob: "",
         email: "",
+        gender: "",
         terms: false,
       }}
       validationSchema={validationSchema}
@@ -81,126 +85,157 @@ const RegistrationForm = () => {
     >
       {({ isSubmitting, status, touched, errors }) => (
         <Form>
-          <Field
-            as={TextField}
-            margin="normal"
-            required
-            fullWidth
-            name="fullName"
-            label="Full Name"
-            error={touched.fullName && Boolean(errors.fullName)}
-            helperText={<ErrorMessage name="fullName" />}
-            style={styles.formitem}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton edge="end">
-                    <EditIcon />
-                  </IconButton>
-                </InputAdornment>
-              ),
+          <Card
+            sx={{
+              padding: 0,
+              border: "1px solid #efefef",
+              boxShadow: "1px 1px 5px #333",
             }}
-          />
-          <Field
-            as={TextField}
-            margin="normal"
-            required
-            fullWidth
-            name="streetAddress"
-            label="Street Address"
-            error={touched.streetAddress && Boolean(errors.streetAddress)}
-            helperText={<ErrorMessage name="streetAddress" />}
-            style={styles.formitem}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton edge="end">
-                    <EditIcon />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+          >
+            <CardContent>
               <Field
                 as={TextField}
-                margin="normal"
+                margin="thin"
                 required
                 fullWidth
-                name="city"
-                label="City"
-                error={touched.city && Boolean(errors.city)}
-                helperText={<ErrorMessage name="city" />}
+                name="fullName"
+                label="Full Name"
+                error={touched.fullName && Boolean(errors.fullName)}
+                helperText={<ErrorMessage name="fullName" />}
                 style={styles.formitem}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton edge="end">
-                        <EditIcon />
+                        <EditOutlinedIcon />
                       </IconButton>
                     </InputAdornment>
                   ),
                 }}
               />
-            </Grid>
-            <Grid item xs={12} sm={6}>
               <Field
                 as={TextField}
-                margin="normal"
+                margin="thin"
                 required
                 fullWidth
-                name="state"
-                label="State"
-                error={touched.state && Boolean(errors.state)}
-                helperText={<ErrorMessage name="state" />}
+                name="streetAddress"
+                label="Street Address"
+                error={touched.streetAddress && Boolean(errors.streetAddress)}
+                helperText={<ErrorMessage name="streetAddress" />}
                 style={styles.formitem}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton edge="end">
-                        <EditIcon />
+                        <EditOutlinedIcon />
                       </IconButton>
                     </InputAdornment>
                   ),
                 }}
               />
-            </Grid>
-          </Grid>
-          <Field
-            as={TextField}
-            margin="normal"
-            required
-            fullWidth
-            name="mobileNumber"
-            label="Mobile Number"
-            type="tel"
-            error={touched.mobileNumber && Boolean(errors.mobileNumber)}
-            helperText={<ErrorMessage name="mobileNumber" />}
-            style={styles.formitem}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton edge="end">
-                    <EditIcon />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <Field
-            as={TextField}
-            margin="normal"
-            required
-            fullWidth
-            name="dob"
-            label="Date of Birth"
-            type="date"
-            InputLabelProps={{ shrink: true }}
-            error={touched.dob && Boolean(errors.dob)}
-            helperText={<ErrorMessage name="dob" />}
-            style={styles.formitem}
-          />
+              <Grid container spacing={1}>
+                <Grid item xs={12} sm={6}>
+                  <Field
+                    as={TextField}
+                    margin="thin"
+                    required
+                    fullWidth
+                    name="city"
+                    label="City"
+                    error={touched.city && Boolean(errors.city)}
+                    helperText={<ErrorMessage name="city" />}
+                    style={styles.formitem}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton edge="end">
+                            <EditOutlinedIcon />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Field
+                    as={TextField}
+                    margin="thin"
+                    required
+                    fullWidth
+                    name="state"
+                    label="State"
+                    error={touched.state && Boolean(errors.state)}
+                    helperText={<ErrorMessage name="state" />}
+                    style={styles.formitem}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton edge="end">
+                            <EditOutlinedIcon />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+              </Grid>
+              <Field
+                as={TextField}
+                margin="thin"
+                required
+                fullWidth
+                name="mobileNumber"
+                label="Mobile Number"
+                type="tel"
+                error={touched.mobileNumber && Boolean(errors.mobileNumber)}
+                helperText={<ErrorMessage name="mobileNumber" />}
+                style={styles.formitem}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton edge="end">
+                        <EditOutlinedIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <Field
+                as={TextField}
+                margin="thin"
+                required
+                fullWidth
+                name="dob"
+                label=""
+                type="date"
+                style={styles.formitem}
+                InputLabelProps={{ shrink: true }}
+                error={touched.dob && Boolean(errors.dob)}
+                helperText={<ErrorMessage name="dob" />}
+              />
+              <FormControl fullWidth margin="thin">
+                <InputLabel id="gender-label">Gender</InputLabel>
+                <Field
+                  as={Select}
+                  margin="thin"
+                  labelId="gender-label"
+                  name="gender"
+                  required
+                  error={touched.gender && Boolean(errors.gender)}
+                  render={({ field }) => (
+                    <Select {...field} label="Gender">
+                      <MenuItem value="male">Male</MenuItem>
+                      <MenuItem value="female">Female</MenuItem>
+                      <MenuItem value="other">Other</MenuItem>
+                    </Select>
+                  )}
+                />
+                <ErrorMessage name="gender">
+                  {(msg) => <Typography color="error">{msg}</Typography>}
+                </ErrorMessage>
+              </FormControl>
+            </CardContent>
+          </Card>
           <Field
             as={TextField}
             margin="normal"
@@ -210,30 +245,46 @@ const RegistrationForm = () => {
             label="Email"
             type="email"
             error={touched.email && Boolean(errors.email)}
-            helperText={<ErrorMessage name="email" />}
             style={styles.formitem}
+            helperText={<ErrorMessage name="email" />}
           />
-          {/* <FormGroup>
-            <FormControlLabel
-              control={<Field as={Checkbox} name="terms" />}
-              label="I agree to the Terms of Service"
-            />
-            <ErrorMessage name="terms">
-              {(msg) => <Typography color="error">{msg}</Typography>}
-            </ErrorMessage>
-          </FormGroup> */}
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             disabled={isSubmitting}
+            sx={{
+              backgroundColor: "#152438",
+              color: "#fff",
+              border: "1px solid #152438",
+              verticalAlign: "middle",
+              "&:hover": {
+                backgroundColor: "#2B3649",
+                border: "1px solid #2B3649",
+                boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.05)",
+              },
+            }}
             startIcon={<Email />}
           >
             Continue with email
           </Button>
-          <Typography component="div" align="center" style={styles.formfooter}>
+          <Typography
+            component="div"
+            align="center"
+            sx={{
+              marginTop: "25px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             By signing up, I agree to the <Link href="#">Offer Terms</Link>
+            <IconButton
+              sx={{ ml: 1 }} // Adjusts margin-left for spacing
+            >
+              <ExpandMoreIcon />
+            </IconButton>
           </Typography>
           {status?.success && (
             <Box mt={2}>

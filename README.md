@@ -21,9 +21,7 @@ This project replicates the Sharecare registration page using React and Material
 
 1. Clone the repository:
 
-   ```bash
-
-   ```
+   `bash`
 
 2. Navigate to the project directory:
 
