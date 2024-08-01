@@ -24,9 +24,8 @@ This project replicates the Sharecare registration page using React and Material
 ## Installation
 
 1. Clone the repository:
-
    ```bash
-git clone https://github.com/your-username/signup-react-proj.git
+   git clone https://github.com/your-username/signup-react-proj.git
    ```
 
 2. Navigate to the project directory:
@@ -47,14 +46,14 @@ git clone https://github.com/your-username/signup-react-proj.git
    ```
 
    ```bash
-    npm run server
+   npm run server
    ```
 
 3.  Open your browser and go to http://localhost:3000 to view the registration form.
 
 ## Storage
 
-    You can view the data by opening http://localhost:5000/registrations to view data saved in db.json under root directory.
+You can view the data by opening http://localhost:5000/registrations to view data saved in db.json under root directory.
    ```bash
     http://localhost:5000/registrations
    ```
@@ -63,7 +62,7 @@ git clone https://github.com/your-username/signup-react-proj.git
 
 1. To run the unit tests:
    ```bash
-    npm test
+   npm test
    ```
 
 ## For any inquiries, please reach out to rohanrit@gmail.com.
