@@ -8,9 +8,14 @@ import {
   Grid,
   Typography,
   Box,
+  InputAdornment,
+  IconButton,
+  Link,
 } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import EditIcon from "@mui/icons-material/Edit";
+import Email from "@mui/icons-material/Email";
 
 const validationSchema = Yup.object({
   fullName: Yup.string().required("Full Name is required"),
@@ -26,6 +31,14 @@ const validationSchema = Yup.object({
     .required("Email is required"),
   terms: Yup.bool().oneOf([true], "You must agree to the terms"),
 });
+
+const styles = {
+  formitem: {
+    marginTop: "0px",
+    marginBottom: "0px",
+  },
+  formfooter: {},
+};
 
 const RegistrationForm = () => {
   const handleSubmit = async (values, { setSubmitting, setStatus }) => {
@@ -77,6 +90,16 @@ const RegistrationForm = () => {
             label="Full Name"
             error={touched.fullName && Boolean(errors.fullName)}
             helperText={<ErrorMessage name="fullName" />}
+            style={styles.formitem}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton edge="end">
+                    <EditIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
           <Field
             as={TextField}
@@ -87,6 +110,16 @@ const RegistrationForm = () => {
             label="Street Address"
             error={touched.streetAddress && Boolean(errors.streetAddress)}
             helperText={<ErrorMessage name="streetAddress" />}
+            style={styles.formitem}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton edge="end">
+                    <EditIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -99,6 +132,16 @@ const RegistrationForm = () => {
                 label="City"
                 error={touched.city && Boolean(errors.city)}
                 helperText={<ErrorMessage name="city" />}
+                style={styles.formitem}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton edge="end">
+                        <EditIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -111,6 +154,16 @@ const RegistrationForm = () => {
                 label="State"
                 error={touched.state && Boolean(errors.state)}
                 helperText={<ErrorMessage name="state" />}
+                style={styles.formitem}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton edge="end">
+                        <EditIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Grid>
           </Grid>
@@ -124,6 +177,16 @@ const RegistrationForm = () => {
             type="tel"
             error={touched.mobileNumber && Boolean(errors.mobileNumber)}
             helperText={<ErrorMessage name="mobileNumber" />}
+            style={styles.formitem}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton edge="end">
+                    <EditIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
           <Field
             as={TextField}
@@ -136,6 +199,7 @@ const RegistrationForm = () => {
             InputLabelProps={{ shrink: true }}
             error={touched.dob && Boolean(errors.dob)}
             helperText={<ErrorMessage name="dob" />}
+            style={styles.formitem}
           />
           <Field
             as={TextField}
@@ -147,8 +211,9 @@ const RegistrationForm = () => {
             type="email"
             error={touched.email && Boolean(errors.email)}
             helperText={<ErrorMessage name="email" />}
+            style={styles.formitem}
           />
-          <FormGroup>
+          {/* <FormGroup>
             <FormControlLabel
               control={<Field as={Checkbox} name="terms" />}
               label="I agree to the Terms of Service"
@@ -156,16 +221,20 @@ const RegistrationForm = () => {
             <ErrorMessage name="terms">
               {(msg) => <Typography color="error">{msg}</Typography>}
             </ErrorMessage>
-          </FormGroup>
+          </FormGroup> */}
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             disabled={isSubmitting}
+            startIcon={<Email />}
           >
-            Register
+            Continue with email
           </Button>
+          <Typography component="div" align="center" style={styles.formfooter}>
+            By signing up, I agree to the <Link href="#">Offer Terms</Link>
+          </Typography>
           {status?.success && (
             <Box mt={2}>
               <Typography variant="body2" color="success.main">

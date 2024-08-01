@@ -30,6 +30,7 @@ const styles = {
     overflowY: "auto",
     paddingTop: "20px",
     boxSizing: "border-box",
+    maxWidth: "360px",
   },
   heroContainer: {
     backgroundImage: `url(${mockbg})`,
@@ -52,7 +53,7 @@ const RegistrationPage = () => {
         ></Box>
       </Grid>
       <Grid xs={12} sm={6} sx={styles.rightSide}>
-        <Container maxWidth="md">
+        <Container maxWidth="md" component="div" align="center">
           <Box sx={styles.formContainer}>
             <Typography component="h1" variant="h5" align="center">
               Sign Up

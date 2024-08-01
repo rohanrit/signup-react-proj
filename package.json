@@ -1,5 +1,5 @@
 {
-  "name": "sharecare-registration",
+  "name": "signup-react-proj",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -19,7 +19,7 @@
     "yup": "^1.4.0"
   },
   "scripts": {
-    "start:mock-server": "json-server --watch db.json --port 5000",
+    "server": "json-server --watch db.json --port 5000",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
