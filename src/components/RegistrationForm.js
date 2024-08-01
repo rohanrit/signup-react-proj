@@ -82,6 +82,23 @@ const RegistrationForm = () => {
     >
       {({ isSubmitting, status, touched, errors }) => (
         <Form>
+          {status?.success && (
+            <Box mt={2}>
+              <Typography variant="body2" spacing={3} color="success.main">
+                Registration Successful, view details{" "}
+                <Link href="http://localhost:5000/registrations">
+                  http://localhost:5000/registrations
+                </Link>
+              </Typography>
+            </Box>
+          )}
+          {status?.success === false && (
+            <Box mt={2}>
+              <Typography variant="body2" color="error">
+                Registration Failed
+              </Typography>
+            </Box>
+          )}
           <Card
             sx={{
               padding: 0,
@@ -283,23 +300,6 @@ const RegistrationForm = () => {
           >
             By signing up, I agree to the <Link href="#">Offer Terms</Link>
           </Typography>
-          {status?.success && (
-            <Box mt={2}>
-              <Typography variant="body2" spacing={3} color="success.main">
-                Registration Successful, view details{" "}
-                <Link href="http://localhost:5000/registrations">
-                  http://localhost:5000/registrations
-                </Link>
-              </Typography>
-            </Box>
-          )}
-          {status?.success === false && (
-            <Box mt={2}>
-              <Typography variant="body2" color="error">
-                Registration Failed
-              </Typography>
-            </Box>
-          )}
         </Form>
       )}
     </Formik>
