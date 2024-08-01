@@ -1,3 +1,7 @@
+# Registration Form
+
+![Screenshot (100)](https://github.com/user-attachments/assets/4f838499-b0d4-44e9-81ee-664829edcf33)
+
 ## Description
 
 This project replicates the Sharecare registration page using React and Material-UI. The registration form includes fields for user input, form validation, and a responsive design that adapts to different screen sizes.
@@ -22,29 +26,44 @@ This project replicates the Sharecare registration page using React and Material
 1. Clone the repository:
 
    ```bash
-
+git clone https://github.com/your-username/signup-react-proj.git
    ```
 
 2. Navigate to the project directory:
+   ```bash
+   cd signup-react-proj
+   ```
 
 3. Install the dependencies:
+   ```bash
    npm install
+   ```
 
 ## Usage
 
 1.  Start the development client & json server: (Note: start both the client and json server on seperate terminals for the form to work)
-    npm start
-    npm run server
+   ```bash
+   npm start
+   ```
 
-2.  Open your browser and go to http://localhost:3000 to view the registration form.
+   ```bash
+    npm run server
+   ```
+
+3.  Open your browser and go to http://localhost:3000 to view the registration form.
 
 ## Storage
 
     You can view the data by opening http://localhost:5000/registrations to view data saved in db.json under root directory.
+   ```bash
+    http://localhost:5000/registrations
+   ```
 
 ## Running Tests
 
 1. To run the unit tests:
-   npm test
+   ```bash
+    npm test
+   ```
 
 ## For any inquiries, please reach out to rohanrit@gmail.com.
