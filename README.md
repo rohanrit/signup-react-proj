@@ -1,6 +1,6 @@
 # Registration Form
 
-![Screenshot (100)](https://github.com/user-attachments/assets/4f838499-b0d4-44e9-81ee-664829edcf33)
+![Screenshot (101)](https://github.com/user-attachments/assets/27a4986c-bce3-4a6c-8050-0aa32ceac00e)
 
 ## Description
 
