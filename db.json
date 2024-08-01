@@ -1,81 +1,38 @@
 {
   "registrations": [
     {
-      "id": "caf9",
-      "fullName": "test",
-      "streetAddress": "test",
+      "id": "3a42",
+      "fullName": "test001",
+      "streetAddress": "te",
+      "city": "test",
+      "state": "test",
+      "mobileNumber": "9876543210",
+      "dob": "2024-07-11",
+      "email": "test@sample.com",
+      "gender": "male",
+      "terms": true
+    },
+    {
+      "id": "ac09",
+      "fullName": "test002",
+      "streetAddress": "atest",
+      "city": "asdfasd",
+      "state": "asdfasdf",
+      "mobileNumber": "9876543210",
+      "dob": "2024-07-16",
+      "email": "test@gmail.com",
+      "gender": "male"
+    },
+    {
+      "id": "5dd7",
+      "fullName": "test03",
+      "streetAddress": "test03",
       "city": "test",
       "state": "test",
       "mobileNumber": "9876543210",
       "dob": "2024-07-17",
-      "email": "test@sample.com",
-      "terms": true
-    },
-    {
-      "id": "548d",
-      "fullName": "test2",
-      "streetAddress": "test2",
-      "city": "test2",
-      "state": "test",
-      "mobileNumber": "9876543211",
-      "dob": "2024-07-05",
-      "email": "test@sample.com",
-      "terms": true
-    },
-    {
-      "id": "815b",
-      "fullName": "test001",
-      "streetAddress": "test",
-      "city": "test",
-      "state": "test",
-      "mobileNumber": "9876543210",
-      "dob": "2024-07-03",
       "email": "test@gmail.com",
-      "terms": true
-    },
-    {
-      "id": "8013",
-      "fullName": "SHIVANSH SINGH",
-      "streetAddress": "Kilburn Colony, Hinoo",
-      "city": "Ranchi",
-      "state": "Jharkhand",
-      "mobileNumber": "9162888263",
-      "dob": "1995-08-21",
-      "email": "singh.shivansh2108@gmail.com",
-      "terms": true
-    },
-    {
-      "id": "758a",
-      "fullName": "Shreyash Singh",
-      "streetAddress": "Hinoo",
-      "city": "Ranchi",
-      "state": "Jharkhand",
-      "mobileNumber": "9876543210",
-      "dob": "2024-07-18",
-      "email": "chote@gmail.com",
-      "terms": true
-    },
-    {
-      "id": "c191",
-      "fullName": "John Doe",
-      "streetAddress": "123 Main St",
-      "city": "Anytown",
-      "state": "CA",
-      "mobileNumber": "1234567890",
-      "dob": "2000-01-01",
-      "email": "john.doe@example.com",
-      "terms": true
-    },
-    {
-      "id": "97c7",
-      "fullName": "test05",
-      "streetAddress": "test05",
-      "city": "test05",
-      "state": "test05",
-      "mobileNumber": "9876543210",
-      "dob": "2024-07-04",
-      "email": "test05@sample.com",
-      "terms": true
+      "gender": "male"
     }
   ]
 }

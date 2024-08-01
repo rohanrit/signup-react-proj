@@ -1,11 +1,10 @@
 import React from "react";
 import {
   TextField,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
   Button,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
   Grid,
   Typography,
   Box,
@@ -14,12 +13,16 @@ import {
   Link,
   Card,
   CardContent,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
 } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Email from "@mui/icons-material/Email";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // Import dropdown icon
 
 const validationSchema = Yup.object({
   fullName: Yup.string().required("Full Name is required"),
@@ -33,9 +36,7 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .email("Invalid email address")
     .required("Email is required"),
-  gender: Yup.string()
-    .oneOf(["male", "female", "other"], "Invalid gender")
-    .required("Gender is required"),
+  gender: Yup.string().required("Gender is required"),
   terms: Yup.bool().oneOf([true], "You must agree to the terms"),
 });
 
@@ -78,7 +79,7 @@ const RegistrationForm = () => {
         dob: "",
         email: "",
         gender: "",
-        terms: false,
+        // terms: false,
       }}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
@@ -89,7 +90,7 @@ const RegistrationForm = () => {
             sx={{
               padding: 0,
               border: "1px solid #efefef",
-              boxShadow: "1px 1px 5px #333",
+              shadow: "1px 1px 5px #333",
             }}
           >
             <CardContent>
@@ -202,7 +203,7 @@ const RegistrationForm = () => {
               />
               <Field
                 as={TextField}
-                margin="thin"
+                margin={"thin"}
                 required
                 fullWidth
                 name="dob"
@@ -212,27 +213,26 @@ const RegistrationForm = () => {
                 InputLabelProps={{ shrink: true }}
                 error={touched.dob && Boolean(errors.dob)}
                 helperText={<ErrorMessage name="dob" />}
+                // sx={{
+                //   margin: 0,
+                // }}
               />
-              <FormControl fullWidth margin="thin">
-                <InputLabel id="gender-label">Gender</InputLabel>
-                <Field
-                  as={Select}
-                  margin="thin"
-                  labelId="gender-label"
+              <FormControl
+                fullWidth
+                margin="normal"
+                error={touched.gender && Boolean(errors.gender)}
+              >
+                <InputLabel>Gender</InputLabel>
+                <Field as={Select} name="gender" label="Gender">
+                  <MenuItem value="male">Male</MenuItem>
+                  <MenuItem value="female">Female</MenuItem>
+                  <MenuItem value="other">Other</MenuItem>
+                </Field>
+                <ErrorMessage
                   name="gender"
-                  required
-                  error={touched.gender && Boolean(errors.gender)}
-                  render={({ field }) => (
-                    <Select {...field} label="Gender">
-                      <MenuItem value="male">Male</MenuItem>
-                      <MenuItem value="female">Female</MenuItem>
-                      <MenuItem value="other">Other</MenuItem>
-                    </Select>
-                  )}
+                  component={Typography}
+                  color="error"
                 />
-                <ErrorMessage name="gender">
-                  {(msg) => <Typography color="error">{msg}</Typography>}
-                </ErrorMessage>
               </FormControl>
             </CardContent>
           </Card>
@@ -248,6 +248,15 @@ const RegistrationForm = () => {
             style={styles.formitem}
             helperText={<ErrorMessage name="email" />}
           />
+          {/* <FormGroup>
+            <FormControlLabel
+              control={<Field as={Checkbox} name="terms" />}
+              label="I agree to the Terms of Service"
+            />
+            <ErrorMessage name="terms">
+              {(msg) => <Typography color="error">{msg}</Typography>}
+            </ErrorMessage>
+          </FormGroup> */}
           <Button
             type="submit"
             fullWidth
@@ -274,22 +283,17 @@ const RegistrationForm = () => {
             align="center"
             sx={{
               marginTop: "25px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
             }}
           >
             By signing up, I agree to the <Link href="#">Offer Terms</Link>
-            <IconButton
-              sx={{ ml: 1 }} // Adjusts margin-left for spacing
-            >
-              <ExpandMoreIcon />
-            </IconButton>
           </Typography>
           {status?.success && (
             <Box mt={2}>
-              <Typography variant="body2" color="success.main">
-                Registration Successful
+              <Typography variant="body2" spacing={3} color="success.main">
+                Registration Successful, view details{" "}
+                <Link href="http://localhost:5000/registrations">
+                  http://localhost:5000/registrations
+                </Link>
               </Typography>
             </Box>
           )}
