@@ -69,17 +69,6 @@ sample user id = 97c7
 http://localhost:5000/registrations/<user id>
 ```
 
-```bash
- http://localhost:5000/registrations
-```
-
-To fetch single user data go to url
-sample user id = 97c7
-
-```bash
-http://localhost:5000/registrations/<user id>
-```
-
 ## Running Tests
 
 1. To run the unit tests:
