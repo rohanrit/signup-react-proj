@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Grid, Container, Box } from "@mui/material";
 import mockbg from "../UI_Mock_bg.png";
-import RegistrationForm from "./RegistrationForm-other";
+import RegistrationForm from "./RegistrationForm";
 import Header from "./Header";
 
 const styles = {

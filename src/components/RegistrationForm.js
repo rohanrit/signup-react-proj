@@ -2,9 +2,6 @@ import React from "react";
 import {
   TextField,
   Button,
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
   Grid,
   Typography,
   Box,
@@ -22,7 +19,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Email from "@mui/icons-material/Email";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // Import dropdown icon
 
 const validationSchema = Yup.object({
   fullName: Yup.string().required("Full Name is required"),
@@ -223,7 +219,7 @@ const RegistrationForm = () => {
                 error={touched.gender && Boolean(errors.gender)}
               >
                 <InputLabel>Gender</InputLabel>
-                <Field as={Select} name="gender" label="Gender">
+                <Field as={Select} name="gender" label="Gender" align="left">
                   <MenuItem value="male">Male</MenuItem>
                   <MenuItem value="female">Female</MenuItem>
                   <MenuItem value="other">Other</MenuItem>
